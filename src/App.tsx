@@ -4,6 +4,7 @@ import { NavBar } from './component/NavBar';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { Dashboard } from './component/Dashboard';
 import { Login } from './component/Login';
+import registerServiceWorker from "./serviceWorker";
 
 function App() {
   return (
@@ -27,5 +28,7 @@ function App() {
       </Router>
   );
 }
+
+registerServiceWorker();
 
 export default App;
