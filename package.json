@@ -1,7 +1,7 @@
 {
-  "name": "anime-web-watchlist-frontend",
+  "name": "web-watchlist-frontend",
   "version": "1.0.0",
-  "description": "A react frontend for the Anime Web Watchlist written in TypeScript.",
+  "description": "A react frontend for the Web Watchlist written in TypeScript.",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
@@ -43,12 +43,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ruesa18/Anime-Web-Watchlist-Frontend.git"
+    "url": "git+https://github.com/Ruesa18/Web-Watchlist-Frontend.git"
   },
   "author": "Sandro Rüfenacht",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ruesa18/Anime-Web-Watchlist-Frontend/issues"
+    "url": "https://github.com/Ruesa18/Web-Watchlist-Frontend/issues"
   },
   "homepage": "."
 }

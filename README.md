@@ -1,2 +1,2 @@
-# Anime-Web-Watchlist-Frontend
-A react frontend for the Anime Web Watchlist written in TypeScript.
+# Web-Watchlist-Frontend
+A react frontend for the Web Watchlist written in TypeScript.
