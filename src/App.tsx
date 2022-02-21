@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { Dashboard } from './component/Dashboard';
 import { Login } from './component/Login';
 import registerServiceWorker from "./serviceWorker";
+import { MovieOverview } from './component/MovieOverview';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
               <Route path='/' element={< Dashboard />}></Route>
               <Route path='/Dashboard' element={< Dashboard />}></Route>
+              <Route path='/MovieOverview' element={< MovieOverview />}></Route>
               <Route path='/Login' element={< Login />}></Route>
           </Routes>
         </main>
