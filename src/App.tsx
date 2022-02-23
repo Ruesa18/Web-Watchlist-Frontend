@@ -6,6 +6,7 @@ import { Dashboard } from './component/Dashboard';
 import { Login } from './component/Login';
 import registerServiceWorker from "./serviceWorker";
 import { MovieOverview } from './component/MovieOverview';
+import { CreateMovie } from './component/CreateMovie';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path='/Dashboard' element={< Dashboard />}></Route>
               <Route path='/MovieOverview' element={< MovieOverview />}></Route>
               <Route path='/Login' element={< Login />}></Route>
+              <Route path='/create-movie' element={<CreateMovie />}></Route>
           </Routes>
         </main>
         

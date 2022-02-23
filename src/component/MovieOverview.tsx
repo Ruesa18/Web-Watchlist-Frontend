@@ -53,6 +53,7 @@ export class MovieOverview extends React.Component<{}, MovieOverviewState> {
         return (
             <div>
                 <button onClick={this.update}>Refresh</button>
+                <a href="/create-movie"><button>Add a movie</button></a>
                 <h1>Movies</h1>
 
                 <section>

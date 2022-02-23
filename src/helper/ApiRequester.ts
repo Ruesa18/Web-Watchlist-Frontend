@@ -17,9 +17,16 @@ export class ApiRequester {
     }
 
     async request(urlExtension: string, method: ApiRequester.HttpMethods, data: Object|undefined = undefined, loginNeeded: boolean = true, callback: Function) {
+        let response;
         switch(method) {
             case ApiRequester.HttpMethods.GET:
-                let response = await axios.get(this.baseUrl + urlExtension, data).catch((error) => {
+                response = await axios.get(this.baseUrl + urlExtension, data).catch((error) => {
+                    throw error;
+                });
+                callback(response);
+                break;
+            case ApiRequester.HttpMethods.POST:
+                response = await axios.post(this.baseUrl + urlExtension, data).catch((error) => {
                     throw error;
                 });
                 callback(response);
