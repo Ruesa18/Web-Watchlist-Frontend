@@ -8,6 +8,8 @@ import '../css/MovieOverview.css';
 
 type MovieOverviewState = {
     movies: Array<MovieShowDto>,
+    error: String,
+    info: String
 }
 
 export class MovieOverview extends React.Component<{}, MovieOverviewState> {
@@ -16,7 +18,9 @@ export class MovieOverview extends React.Component<{}, MovieOverviewState> {
         super(props);
 
         this.state = {
-            movies: []
+            movies: [],
+            error: "",
+            info: ""
         }
     }
 
@@ -26,15 +30,22 @@ export class MovieOverview extends React.Component<{}, MovieOverviewState> {
     }
 
     update = () => {
+        this.setState(() => ({movies: [], error: "", info: ""}));
         ApiRequester.getInstance().request("movie", ApiRequester.HttpMethods.GET, undefined, undefined, (response: AxiosResponse) => {
-            console.log(response)
-            console.log(response.data);
-            let movies = response.data.map((movie: { uuid: string, name: string; imageUrl: string }) => {
-                return new MovieShowDto(movie.uuid, movie.name, movie.imageUrl);
-            });
-            console.log(movies);
-            
-            this.setState(state => ({movies: movies}));
+            if(response) {
+                let movies = response.data.map((movie: { uuid: string, name: string; imageUrl: string }) => {
+                    return new MovieShowDto(movie.uuid, movie.name, movie.imageUrl);
+                });
+                
+                this.setState(() => ({movies: movies}));
+                
+                if(movies.length == 0) {
+                    this.setState(() => ({info: "No movies found"}));
+                }
+            }
+        }).catch((error) => {
+            console.error(error);
+            this.setState(() => ({error: "API not reachable"}))
         });
     }
 
@@ -45,12 +56,18 @@ export class MovieOverview extends React.Component<{}, MovieOverviewState> {
                 <h1>Movies</h1>
 
                 <section>
-                    {this.state.movies.map((movie, index) => (
+                    {this.state.error !== "" ?
+                        <div className="messages error">{this.state.error}</div>
+                    : this.state.info !== "" ? 
+                        <div className="messages info">No movies found</div>
+                    : Array.isArray(this.state.movies) && this.state.movies.length > 0 ? this.state.movies.map((movie, index) => (
                         <div className="movie-cards" key={index}>
                             <h5>{movie.name}</h5>
-                            <img src={movie.imageUrl} />
+                            <img src={movie.imageUrl} alt="{movie.name}" />
                         </div>
-                    ))}
+                    )): 
+                        <div className="loading">Loading...</div>
+                    }
                 </section>
             </div>
         );

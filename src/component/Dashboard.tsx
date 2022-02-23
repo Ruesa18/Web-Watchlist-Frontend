@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { API_URL } from "../config";
 import { ApiRequester } from "../helper/ApiRequester";
 
