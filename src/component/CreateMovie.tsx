@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { API_URL } from "../config";
 import { MovieCreateDto } from "../dto/MovieCreateDto";
 import { ApiRequester } from "../helper/ApiRequester";
@@ -21,15 +21,6 @@ export class CreateMovie extends React.Component<{}, CreateMovieState> {
 
     componentDidMount() {
         console.log(API_URL);
-        this.update();
-    }
-
-    update = () => {
-        /*ApiRequester.getInstance().request("user", ApiRequester.HttpMethods.GET, undefined, undefined, (response: AxiosResponse) => {
-            console.log(response)
-            console.log(response.data);
-            this.setState(() => ({recommendations: response.data}));
-        });*/
     }
 
     submit = (event: React.FormEvent<HTMLFormElement>) => {

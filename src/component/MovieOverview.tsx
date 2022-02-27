@@ -39,7 +39,7 @@ export class MovieOverview extends React.Component<{}, MovieOverviewState> {
                 
                 this.setState(() => ({movies: movies}));
                 
-                if(movies.length == 0) {
+                if(movies.length === 0) {
                     this.setState(() => ({info: "No movies found"}));
                 }
             }
