@@ -27,15 +27,15 @@ export class Dashboard extends React.Component<{}, DashboardState> {
         ApiRequester.getInstance().request("user", ApiRequester.HttpMethods.GET, undefined, undefined, (response: AxiosResponse) => {
             console.log(response)
             console.log(response.data);
-            this.setState(state => ({recommendations: response.data}));
+            this.setState(() => ({recommendations: response.data}));
         });
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.update}>Refresh</button>
-                <h1>Lul</h1>
+                <h1>WWL - The Web Watchlist</h1>
+                <h4>Put movies and series on your watchlist and keep track of your progress</h4>
                 <code><pre>{JSON.stringify(this.state.recommendations)}</pre></code>
             </div>
         );

@@ -1,6 +1,5 @@
 import { AxiosResponse } from "axios";
-import React, { useState } from "react";
-import { API_URL } from "../config";
+import React from "react";
 import { MovieCreateDto } from "../dto/MovieCreateDto";
 import { ApiRequester } from "../helper/ApiRequester";
 
