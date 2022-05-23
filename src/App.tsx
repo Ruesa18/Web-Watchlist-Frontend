@@ -7,6 +7,7 @@ import { Login } from './component/Login';
 import registerServiceWorker from "./serviceWorker";
 import { MovieOverview } from './component/MovieOverview';
 import { CreateMovie } from './component/CreateMovie';
+import { FavoritesOverview } from './component/FavoritesOverview';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path='/MovieOverview' element={< MovieOverview />}></Route>
               <Route path='/Login' element={< Login />}></Route>
               <Route path='/create-movie' element={<CreateMovie />}></Route>
+              <Route path='/Favorites' element={<FavoritesOverview/>}></Route>
           </Routes>
         </main>
         
