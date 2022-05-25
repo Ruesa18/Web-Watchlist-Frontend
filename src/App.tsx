@@ -8,31 +8,52 @@ import registerServiceWorker from "./serviceWorker";
 import { MovieOverview } from './component/MovieOverview';
 import { CreateMovie } from './component/CreateMovie';
 import { FavoritesOverview } from './component/FavoritesOverview';
+import React from 'react';
+import { UserModel } from './model/UserModel';
 
-function App() {
-  return (
-      <Router>
-        <header>
-          <a href="/"><img src={logo} className="App-logo" alt="logo" /></a>
-          <NavBar />
-        </header>
-        
-        <main>
-          <Routes>
-              <Route path='/' element={< Dashboard />}></Route>
-              <Route path='/Dashboard' element={< Dashboard />}></Route>
-              <Route path='/MovieOverview' element={< MovieOverview />}></Route>
-              <Route path='/Login' element={< Login />}></Route>
-              <Route path='/create-movie' element={<CreateMovie />}></Route>
-              <Route path='/Favorites' element={<FavoritesOverview/>}></Route>
-          </Routes>
-        </main>
-        
-        <footer>
-          <a href="https://github.com/Ruesa18" target="_blank" rel="noreferrer">&copy; Sandro Rüfenacht</a>
-        </footer>
-      </Router>
-  );
+type UserState = {
+  user: string
+}
+
+class App extends React.Component<{}, UserState> {
+
+  constructor(props: Readonly<Object> | Object) {
+    super(props);
+
+    this.state = {
+      user: ""
+    }
+  }
+
+  render() {
+    return (
+        <Router>
+          <header>
+            <a href="/"><img src={logo} className="App-logo" alt="logo" /></a>
+            <NavBar />
+          </header>
+          
+          <main>
+            <Routes>
+                <Route path='/' element={< Dashboard />}></Route>
+                <Route path='/Dashboard' element={< Dashboard />}></Route>
+                <Route path='/MovieOverview' element={< MovieOverview />}></Route>
+                <Route path='/Login' element={< Login loginHandler={this.loginHandler} />}></Route>
+                <Route path='/create-movie' element={<CreateMovie />}></Route>
+                <Route path='/Favorites' element={<FavoritesOverview/>}></Route>
+            </Routes>
+          </main>
+          
+          <footer>
+            <a href="https://github.com/Ruesa18" target="_blank" rel="noreferrer">&copy; Sandro Rüfenacht</a>
+          </footer>
+        </Router>
+    );
+  }
+
+  loginHandler(user: UserModel) {
+    console.log(user);
+  }
 }
 
 registerServiceWorker();
