@@ -12,7 +12,7 @@ import React from 'react';
 import { UserModel } from './model/UserModel';
 
 type UserState = {
-  user: string
+  user: UserModel|null
 }
 
 class App extends React.Component<{}, UserState> {
@@ -21,7 +21,7 @@ class App extends React.Component<{}, UserState> {
     super(props);
 
     this.state = {
-      user: ""
+      user: null
     }
   }
 
@@ -31,6 +31,7 @@ class App extends React.Component<{}, UserState> {
           <header>
             <a href="/"><img src={logo} className="App-logo" alt="logo" /></a>
             <NavBar />
+            <div>{this.state.user?.email}</div>
           </header>
           
           <main>
@@ -51,8 +52,12 @@ class App extends React.Component<{}, UserState> {
     );
   }
 
-  loginHandler(user: UserModel) {
+  loginHandler = (user: UserModel) => {
     console.log(user);
+    //TODO save user data
+    console.log(this.state);
+    this.setState({user} as UserState);
+    console.log("Success", this.state);
   }
 }
 

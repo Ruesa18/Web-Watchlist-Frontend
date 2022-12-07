@@ -1,5 +1,9 @@
+import { AxiosResponse } from "axios";
+import jwtDecode from "jwt-decode";
 import React from "react";
+import { isJSDocUnknownTag } from "typescript";
 import '../css/Login.css';
+import { ApiRequester } from "../helper/ApiRequester";
 import { UserModel } from "../model/UserModel";
 
 type LoginState = {
@@ -37,8 +41,24 @@ export class Login extends React.Component<LoginProps, LoginState> {
     }
 
     handleFormSubmit() {
+        if(this.state.email === "" || this.state.password === "") {
+            return;
+        }
+
+        ApiRequester.getInstance().request("auth", ApiRequester.HttpMethods.POST, {email: this.state.email, password: this.state.password}, false, (response: AxiosResponse) => {
+            console.log("JWNJDNASJDN");
+            console.log(response.data);
+            ApiRequester.getInstance().accessToken = response.data.accessToken;
+            ApiRequester.getInstance().refreshToken = response.data.refreshToken;
+            let data = jwtDecode(response.data.accessToken) as {id: string, email: string};
+            console.log("data", data);
+            if(response.status === 200) {
+                this.props.loginHandler(new UserModel(data.id, data.email))
+            }
+        });
         
-        let userModel = new UserModel("", this.state.email, "");
-        this.props.loginHandler(userModel);
+        //TODO handle login
+        //let userModel = new UserModel("", this.state.email);
+        //this.props.loginHandler(userModel);
     }
 }
