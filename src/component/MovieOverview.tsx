@@ -64,7 +64,7 @@ export class MovieOverview extends React.Component<{}, MovieOverviewState> {
                     : Array.isArray(this.state.movies) && this.state.movies.length > 0 ? this.state.movies.map((movie, index) => (
                         <div className="movie-cards" key={index}>
                             <h5>{movie.name}</h5>
-                            <img src={movie.imageUrl} alt="{movie.name}" />
+                            <img src={movie.imageUrl} alt={movie.name} />
                         </div>
                     )): 
                         <div className="loading">Loading...</div>
